@@ -17,9 +17,9 @@ services:
     build:
       args:
         - creds
-        - settingsfile="/code/settings.yml"
-        - secretsdir="/etc/secrets"
-        - secretsfile="/etc/secrets/creds.yml"
+        - settingsfile=/code/settings.yml
+        - secretsdir=/etc/secrets
+        - secretsfile=/etc/secrets/creds.yml
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
 networks:
   aqmp:
