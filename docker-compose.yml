@@ -22,8 +22,8 @@ services:
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
     volumes:
       - type: bind
-        source: ../twitch-servitor/creds.yml
-        target: /etc/secrets/creds.yml
+        source: "../twitch-servitor/creds.yml"
+        target: "/etc/secrets/creds.yml"
 networks:
   aqmp:
   cogitator:
