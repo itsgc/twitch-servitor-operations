@@ -15,7 +15,7 @@ services:
     restart: always
   cogitator:
     build:
-      context: https://github.com/itsgc/twitch-servitor.git
+      context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
 networks:
   aqmp:
   cogitator:
