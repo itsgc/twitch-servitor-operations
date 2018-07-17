@@ -33,7 +33,8 @@ services:
         target: /etc/secrets/creds.yml
   auscultator:
     image: twitch-servitor
-    depends_on: cogitator
+    depends_on:
+      - cogitator
     command: ["/usr/bin/env", "python", "/code/server-websocket.py"]
     ports:
       - "127.0.0.1:9080:8080"
