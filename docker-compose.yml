@@ -1,4 +1,3 @@
-version: '3'
 services:
   remembrancer:
     image: "mysql:5.7.22"
