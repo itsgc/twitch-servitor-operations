@@ -19,6 +19,8 @@ services:
         - secretsdir=/etc/secrets
         - secretsfile=/etc/secrets/creds.yml
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
+    depends_on:
+      - remembrancer
     volumes:
       - type: bind
         source: ../twitch-servitor/creds.yml
