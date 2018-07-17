@@ -11,7 +11,7 @@ services:
   astropath:
     image: "rabbitmq:3.7.7"
     networks:
-      - aqmp
+      - amqp
     restart: always
   cogitator:
     build:
@@ -20,11 +20,15 @@ services:
         - secretsdir=/etc/secrets
         - secretsfile=/etc/secrets/creds.yml
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
+    networks:
+      - amqp
+      - cogitator
+      - database
     volumes:
       - type: bind
         source: ../twitch-servitor/creds.yml
         target: /etc/secrets/creds.yml
 networks:
-  aqmp:
+  amqp:
   cogitator:
   database:
