@@ -19,6 +19,7 @@ services:
         - secretsdir=/etc/secrets
         - secretsfile=/etc/secrets/creds.yml
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
+    image: twitch-servitor
     depends_on:
       - remembrancer
     command: ["/code/wait-for-it.sh", "remembrancer:3306", "--", "uwsgi",
@@ -31,12 +32,7 @@ services:
         source: ../twitch-servitor/creds.yml
         target: /etc/secrets/creds.yml
   auscultator:
-    build:
-      args:
-        - settingsfile=/code/settings.yml
-        - secretsdir=/etc/secrets
-        - secretsfile=/etc/secrets/creds.yml
-      context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
+    image: twitch-servitor
     command: ["/usr/bin/env", "python", "/code/server-websocket.py"]
     ports:
       - "127.0.0.1:9080:8080"
