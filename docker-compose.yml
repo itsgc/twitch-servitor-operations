@@ -13,6 +13,9 @@ services:
     networks:
       - aqmp
     restart: always
+  cogitator:
+    build:
+      context: https://github.com/itsgc/twitch-servitor.git
 networks:
   aqmp:
   cogitator:
