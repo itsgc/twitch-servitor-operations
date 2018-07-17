@@ -12,6 +12,7 @@ services:
   astropath:
     image: "rabbitmq:3.7.7"
     restart: always
+
   cogitator:
     build:
       args:
@@ -30,3 +31,15 @@ services:
       - type: bind
         source: ../twitch-servitor/creds.yml
         target: /etc/secrets/creds.yml
+  auscultator:
+    build:
+      args:
+        - settingsfile=/code/settings.yml
+        - secretsdir=/etc/secrets
+        - secretsfile=/etc/secrets/creds.yml
+      context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
+    command: ["/usr/bin/env", "python", "/code/server-websocket.py"]
+    ports:
+      - "127.0.0.1:9080:8080"
+
+
