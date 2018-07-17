@@ -3,6 +3,7 @@ services:
   remembrancer:
     image: "mysql:5.7.22"
     command: --default-authentication-plugin=mysql_native_password
+    ports:
     restart: always
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=true
