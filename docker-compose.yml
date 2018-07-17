@@ -22,7 +22,7 @@ services:
     depends_on:
       - remembrancer
     ports:
-      - "9000:8080"
+      - "127.0.0.1:9000:8080"
     volumes:
       - type: bind
         source: ../twitch-servitor/creds.yml
