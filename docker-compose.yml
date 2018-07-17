@@ -21,9 +21,9 @@ services:
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
     depends_on:
       - remembrancer
+    ports:
+      - "9000:8080"
     volumes:
       - type: bind
         source: ../twitch-servitor/creds.yml
         target: /etc/secrets/creds.yml
-  test-machine:
-    image: "ubuntu:latest"
