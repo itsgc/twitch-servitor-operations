@@ -25,3 +25,5 @@ services:
       - type: bind
         source: ../twitch-servitor/creds.yml
         target: /etc/secrets/creds.yml
+  test-machine:
+    image: "ubuntu:latest"
