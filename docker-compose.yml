@@ -21,6 +21,9 @@ services:
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/initial
     depends_on:
       - remembrancer
+    command: ["./wait-for-it.sh", "remembrancer:3306", "--", "uwsgi",
+              "--enable-threads", "--uid", "www-data", "--gid",
+              "www-data", "--ini", "/code/uwsgi.ini"]
     ports:
       - "127.0.0.1:9000:8080"
     volumes:
