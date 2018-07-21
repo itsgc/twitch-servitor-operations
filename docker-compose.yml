@@ -57,5 +57,5 @@ services:
         source: ../twitch-servitor/creds.yml
         target: /etc/secrets/creds.yml
       - type: bind
-        source: ../twitch-servitor-pubsub_creds.yml
+        source: ../twitch-servitor/pubsub_creds.yml
         target: /etc/secrets/pubsub_creds.yml
