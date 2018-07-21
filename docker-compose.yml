@@ -67,3 +67,7 @@ services:
     - astronomican
     command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
               "/usr/bin/env", "python", "/code/vigil.py"]
+    volumes:
+      - type: bind
+        source: ../twitch-servitor/creds.yml
+        target: /etc/secrets/creds.yml
