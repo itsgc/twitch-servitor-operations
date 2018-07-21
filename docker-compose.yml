@@ -24,7 +24,7 @@ services:
     depends_on:
       - astronomican
       - auscultator
-    command: ["/code/wait-for-is.sh", "astronomican:5672", "--", "/usr/bin/env",
+    command: ["/code/wait-for-it.sh", "astronomican:5672", "--", "/usr/bin/env",
               "python", "/code/rabbitmq-receiver.py"]
   cogitator:
     build:
