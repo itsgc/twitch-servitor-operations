@@ -12,22 +12,7 @@ services:
   astronomican:
     image: "rabbitmq:3.7.7"
     restart: always
-  auscultator:
-    image: twitch-servitor
-    depends_on:
-      - cogitator
-    command: ["/usr/bin/env", "python", "/code/server-websocket.py"]
-    ports:
-      - "127.0.0.1:9080:8080"
-  astropath:
-    image: twitch-servitor
-    depends_on:
-      - astronomican
-      - auscultator
-    command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
-              "/code/wait-for-it.sh", "auscultator:8080", "--",
-              "/usr/bin/env", "python", "/code/rabbitmq-receiver.py"]
-  cogitator:
+ cogitator:
     build:
       args:
         - settingsfile=/code/settings.yml
@@ -46,3 +31,31 @@ services:
       - type: bind
         source: ../twitch-servitor/creds.yml
         target: /etc/secrets/creds.yml
+ auscultator:
+    image: twitch-servitor
+    depends_on:
+      - cogitator
+    command: ["/usr/bin/env", "python", "/code/server-websocket.py"]
+    ports:
+      - "127.0.0.1:9080:8080"
+ astropath:
+    image: twitch-servitor
+    depends_on:
+      - astronomican
+      - auscultator
+    command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
+              "/code/wait-for-it.sh", "auscultator:8080", "--",
+              "/usr/bin/env", "python", "/code/rabbitmq-receiver.py"]
+ tithe-collector:
+    image: twitch-servitor
+    depends_on:
+    - astronomican
+    command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
+              "/usr/bin/env", "python", "/code/pubsub.py"]
+    volumes:
+      - type: bind
+        source: ../twitch-servitor/creds.yml
+        target: /etc/secrets/creds.yml
+      - type: bind
+        source: ../twitch-servitor-pubsub_creds.yml
+        target: /etc/secrets/pubsub_creds.yml
