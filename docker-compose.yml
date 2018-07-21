@@ -49,7 +49,7 @@ services:
   tithe-collector:
     image: twitch-servitor
     environment:
-      - PUBSUB_SECRETS_FILE = /etc/secrets/pubsub_creds.yml
+      - PUBSUB_SECRETS_FILE=/etc/secrets/pubsub_creds.yml
     depends_on:
     - astronomican
     command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
