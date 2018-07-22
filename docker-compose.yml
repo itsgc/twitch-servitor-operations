@@ -20,7 +20,7 @@ services:
         - secretsfile=/etc/secrets/creds.yml
       context: https://github.com/itsgc/twitch-servitor.git#u/itsgc/permacodes
     environment:
-      - OAUTH_CODE
+      - OAUTH_REFRESH_TOKEN
     image: twitch-servitor
     depends_on:
       - remembrancer
