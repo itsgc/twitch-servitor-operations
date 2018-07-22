@@ -46,21 +46,21 @@ services:
     command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
               "/code/wait-for-it.sh", "auscultator:8080", "--",
               "/usr/bin/env", "python", "/code/rabbitmq-receiver.py"]
-  tithe-collector:
-    image: twitch-servitor
-    environment:
-      - PUBSUB_SECRETS_FILE=/etc/secrets/pubsub_creds.yml
-    depends_on:
-    - astronomican
-    command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
-              "/usr/bin/env", "python", "/code/pubsub.py"]
-    volumes:
-      - type: bind
-        source: ../twitch-servitor/creds.yml
-        target: /etc/secrets/creds.yml
-      - type: bind
-        source: ../twitch-servitor/pubsub_creds.yml
-        target: /etc/secrets/pubsub_creds.yml
+#  tithe-collector:
+#    image: twitch-servitor
+#    environment:
+#      - PUBSUB_SECRETS_FILE=/etc/secrets/pubsub_creds.yml
+#    depends_on:
+#    - astronomican
+#    command: ["/code/wait-for-it.sh", "--timeout=30", "astronomican:5672", "--",
+#              "/usr/bin/env", "python", "/code/pubsub.py"]
+#    volumes:
+#      - type: bind
+#        source: ../twitch-servitor/creds.yml
+#        target: /etc/secrets/creds.yml
+#      - type: bind
+#        source: ../twitch-servitor/pubsub_creds.yml
+#        target: /etc/secrets/pubsub_creds.yml
   vigil:
     image: twitch-servitor
     depends_on:
